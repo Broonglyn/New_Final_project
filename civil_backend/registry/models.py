@@ -73,6 +73,8 @@ class Application(models.Model):
             self.qr_code.save(f'{self.reference_number}_qr.png', qr_image, save=False)
             super().save(update_fields=['qr_code'])
 
+    class Meta:
+        ordering = ['-created_at']
 class Attachment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     application = models.ForeignKey(Application, related_name='attachments', on_delete=models.CASCADE)

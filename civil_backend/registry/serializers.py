@@ -60,16 +60,47 @@ class AttachmentSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class DocumentTypeFlexibleField(serializers.PrimaryKeyRelatedField):
+    def to_internal_value(self, data):
+        try:
+            return super().to_internal_value(data)
+        except Exception:
+            try:
+                return DocumentType.objects.get(name=data)
+            except DocumentType.DoesNotExist:
+                raise serializers.ValidationError("Invalid document_type.")
+
+
+class RegistryBranchFlexibleField(serializers.PrimaryKeyRelatedField):
+    def to_internal_value(self, data):
+        try:
+            return super().to_internal_value(data)
+        except Exception:
+            try:
+                return RegistryBranch.objects.get(name=data)
+            except RegistryBranch.DoesNotExist:
+                raise serializers.ValidationError("Invalid branch.")
+
+
 class ApplicationSerializer(serializers.ModelSerializer):
-    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     user = UserSerializer(read_only=True)
-    document_type = serializers.SlugRelatedField(
-        queryset=DocumentType.objects.all(),
-        slug_field='name'
-    )
-    branch = serializers.PrimaryKeyRelatedField(
-        queryset=RegistryBranch.objects.all()
-    )
+    document_type = DocumentTypeFlexibleField(queryset=DocumentType.objects.all())
+    branch = RegistryBranchFlexibleField(queryset=RegistryBranch.objects.all())
+    
+    # Add display fields for admin dashboard
+    document_type_name = serializers.CharField(source='document_type.name', read_only=True)
+    branch_name = serializers.CharField(source='branch.name', read_only=True)
+    applicant_name = serializers.SerializerMethodField()
+    
+    def get_applicant_name(self, obj):
+        if obj.user.full_name:
+            return obj.user.full_name
+        elif obj.user.username:
+            return obj.user.username
+        else:
+            name = f"{obj.user.first_name} {obj.user.last_name}".strip()
+            return name or "N/A"
+    
     def create(self, validated_data):
         user = self.context['request'].user
         application = Application.objects.create(user=user, **validated_data)
