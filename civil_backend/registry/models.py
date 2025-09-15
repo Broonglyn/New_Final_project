@@ -64,17 +64,63 @@ class Application(models.Model):
         return f'Name : {self.user.full_name} | Ref: {self.reference_number} | Status: {self.status}'
 
     def save(self, *args, **kwargs):
+        # Check if this is a new application by seeing if it exists in DB
+        is_new_application = not self.pk or not Application.objects.filter(pk=self.pk).exists()
+        
+        # Check for status changes before saving
+        if self.pk:
+            try:
+                old = Application.objects.get(pk=self.pk)
+                if old.status != self.status and self.user.phone_number:
+                    qr_url = f"http://127.0.0.1:8000{self.qr_code}" if self.qr_code else "QR code available in your account"
+                    document_type = self.document_type.name if self.document_type else "Document"
+                    status_msg = {
+                        "rejected": f"Your {document_type} application (Ref: {self.reference_number}) was rejected. Reason: {self.rejection_reason or 'No reason provided.'} QR Code: {qr_url}",
+                        "ready": f"Your {document_type} application (Ref: {self.reference_number}) is ready for collection at {self.branch.name}. QR Code: {qr_url}",
+                    }.get(self.status, f"Your {document_type} application status changed to {self.status}. QR Code: {qr_url}")
+
+                    try:
+                        utils.send_sms(to=self.user.phone_number, message=status_msg)
+                    except Exception as e:
+                        # Log error but don't fail the save
+                        print(f"SMS sending failed: {e}")
+            except Application.DoesNotExist:
+                pass  # New application, no status change to notify
+
+        # Generate reference number if not exists
         if not self.reference_number:
-            user_name = self.user.full_name if self.user.full_name else "NA"
+            if self.user.full_name:
+                user_name = self.user.full_name
+            elif self.user.username:
+                user_name = self.user.username
+            else:
+                combined_name = f"{self.user.first_name} {self.user.last_name}".strip()
+                user_name = combined_name if combined_name else "NA"
             self.reference_number = utils.generate_reference_number(user_name)
+        
         super().save(*args, **kwargs)
+        
+        # Send SMS for new application submission
+        if is_new_application and self.user.phone_number:
+            try:
+                qr_url = f"http://127.0.0.1:8000{self.qr_code}" if self.qr_code else "QR code will be available shortly"
+                document_type = self.document_type.name if self.document_type else "Document"
+                submission_msg = f"Hi {self.user.full_name or self.user.username}, your {document_type} application (Ref: {self.reference_number}) has been submitted successfully. QR Code: {qr_url}. We'll notify you of any status updates."
+                utils.send_sms(to=self.user.phone_number, message=submission_msg)
+            except Exception as e:
+                # Log error but don't fail the save
+                print(f"SMS sending failed: {e}")
+        
+        # Generate QR code if not exists
         if not self.qr_code and self.reference_number:
             qr_image = utils.generate_qr_code(self.reference_number)
-            self.qr_code.save(f'{self.reference_number}_qr.png', qr_image, save=False)
+            self.qr_code.save(f'{self.reference_number}_qr.png', qr_image, save=True)
             super().save(update_fields=['qr_code'])
 
     class Meta:
         ordering = ['-created_at']
+
+
 class Attachment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     application = models.ForeignKey(Application, related_name='attachments', on_delete=models.CASCADE)
