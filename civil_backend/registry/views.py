@@ -1,14 +1,16 @@
 from rest_framework import viewsets, generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from .models import RegistryBranch
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters
 from .models import User, DocumentType, Application, Attachment, RegistryBranch
-from .serializers import UserSerializer, DocumentTypeSerializer, ApplicationSerializer, AttachmentSerializer, RegistryBranchSerializer, ApplicationStatusSerializer
+from .serializers import UserSerializer, DocumentTypeSerializer, ApplicationSerializer, AttachmentSerializer, RegistryBranchSerializer
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework import status as drf_status
+from .serializers import ApplicationStatusSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -23,12 +25,9 @@ class RegistryBranchViewSet(viewsets.ModelViewSet):
     serializer_class = RegistryBranchSerializer
 
 class ApplicationViewSet(viewsets.ModelViewSet):
-    queryset = Application.objects.prefetch_related('attachments').all()
+    queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
     permission_classes = [IsAuthenticated]
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['status', 'reference_number', 'user', 'document_type', 'branch']
-    search_fields = ['reference_number', 'user__full_name', 'user__email']
 
 class AttachmentViewSet(viewsets.ModelViewSet):
     queryset = Attachment.objects.all()
@@ -80,10 +79,9 @@ class RegistryBranchList(APIView):
 @permission_classes([AllowAny])
 def track_by_reference(request):
     ref = request.GET.get("ref")
-    
     if not ref:
         return Response({"detail": "Reference number is required."},
-                        status=status.HTTP_400_BAD_REQUEST)
+                        status=drf_status.HTTP_400_BAD_REQUEST)
 
     try:
         application = Application.objects.get(reference_number=ref)
@@ -91,4 +89,4 @@ def track_by_reference(request):
         return Response(serializer.data)
     except Application.DoesNotExist:
         return Response({"detail": "Application not found."},
-                        status=status.HTTP_404_NOT_FOUND)
+                        status=drf_status.HTTP_404_NOT_FOUND)
