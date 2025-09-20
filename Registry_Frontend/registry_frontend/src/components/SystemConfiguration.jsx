@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Button, Form, Alert, Spinner, Row, Col, Badge, Switch } from 'react-bootstrap';
+import { Card, Button, Form, Alert, Spinner, Row, Col, Badge } from 'react-bootstrap';
 import { FaCog, FaSave, FaBell, FaShieldAlt, FaDatabase, FaGlobe, FaEnvelope } from 'react-icons/fa';
 import api from '../api.jsx';
 
@@ -126,7 +126,8 @@ function SystemConfiguration() {
                       <Form.Label className="mb-0">Maintenance Mode</Form.Label>
                       <small className="text-muted d-block">Disable public access</small>
                     </div>
-                    <Switch
+                    <Form.Check
+                      type="switch"
                       checked={config.maintenance_mode}
                       onChange={() => handleToggle('maintenance_mode')}
                     />
@@ -137,7 +138,8 @@ function SystemConfiguration() {
                       <Form.Label className="mb-0">Allow Registration</Form.Label>
                       <small className="text-muted d-block">Allow new user registrations</small>
                     </div>
-                    <Switch
+                    <Form.Check
+                      type="switch"
                       checked={config.allow_registration}
                       onChange={() => handleToggle('allow_registration')}
                     />
@@ -161,7 +163,8 @@ function SystemConfiguration() {
                       <Form.Label className="mb-0">Email Notifications</Form.Label>
                       <small className="text-muted d-block">Send email notifications</small>
                     </div>
-                    <Switch
+                    <Form.Check
+                      type="switch"
                       checked={config.email_notifications}
                       onChange={() => handleToggle('email_notifications')}
                     />
@@ -172,7 +175,8 @@ function SystemConfiguration() {
                       <Form.Label className="mb-0">SMS Notifications</Form.Label>
                       <small className="text-muted d-block">Send SMS notifications</small>
                     </div>
-                    <Switch
+                    <Form.Check
+                      type="switch"
                       checked={config.sms_notifications}
                       onChange={() => handleToggle('sms_notifications')}
                     />
@@ -238,7 +242,8 @@ function SystemConfiguration() {
                       <Form.Label className="mb-0">Email Verification Required</Form.Label>
                       <small className="text-muted d-block">Require email verification for new users</small>
                     </div>
-                    <Switch
+                    <Form.Check
+                      type="switch"
                       checked={config.require_email_verification}
                       onChange={() => handleToggle('require_email_verification')}
                     />
@@ -249,7 +254,8 @@ function SystemConfiguration() {
                       <Form.Label className="mb-0">Auto-approve Applications</Form.Label>
                       <small className="text-muted d-block">Automatically approve new applications</small>
                     </div>
-                    <Switch
+                    <Form.Check
+                      type="switch"
                       checked={config.auto_approve_applications}
                       onChange={() => handleToggle('auto_approve_applications')}
                     />
