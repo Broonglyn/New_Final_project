@@ -22,6 +22,7 @@ class User(AbstractUser):
     address = models.TextField(blank=True, null=True)
     registry_branch = models.ForeignKey(RegistryBranch, null=True, blank=True, on_delete=models.SET_NULL)
     is_admin = models.BooleanField(default=False)
+    sms_notifications_enabled = models.BooleanField(default=True)
 
     email = models.EmailField(unique=True)
 
@@ -83,3 +84,27 @@ class Attachment(models.Model):
 
     def __str__(self):
         return f'{self.application.user.full_name} | Ref: {self.application.reference_number}'
+
+class Notification(models.Model):
+    NOTIFICATION_TYPES = [
+        ('status_update', 'Status Update'),
+        ('application_approved', 'Application Approved'),
+        ('application_rejected', 'Application Rejected'),
+        ('application_ready', 'Application Ready for Collection'),
+        ('system', 'System Notification'),
+    ]
+    
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications')
+    application = models.ForeignKey(Application, on_delete=models.CASCADE, null=True, blank=True, related_name='notifications')
+    type = models.CharField(max_length=50, choices=NOTIFICATION_TYPES, default='system')
+    title = models.CharField(max_length=200)
+    message = models.TextField()
+    is_read = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        return f'{self.user.username} - {self.title}'

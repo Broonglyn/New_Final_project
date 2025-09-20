@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, DocumentType, Application, Attachment, RegistryBranch
+from .models import User, DocumentType, Application, Attachment, RegistryBranch, Notification
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class UserSerializer(serializers.ModelSerializer):
@@ -7,13 +7,17 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'full_name', 'email', 'phone_number', 'password']
+        fields = ['id', 'username', 'full_name', 'email', 'phone_number', 'is_admin', 'password', 'first_name', 'last_name', 'date_of_birth', 'gender', 'address', 'sms_notifications_enabled']
         extra_kwargs = {
             'password': {'write_only': True},
             'email': {'required': True, 'allow_blank': False},
+            'username': {'required': True, 'allow_blank': False},
         }
 
     def get_full_name(self, obj):
+        # Prioritize the full_name field, fallback to first_name + last_name
+        if obj.full_name:
+            return obj.full_name
         return f"{obj.first_name} {obj.last_name}".strip()
 
     def create(self, validated_data):
@@ -25,19 +29,27 @@ class UserSerializer(serializers.ModelSerializer):
         if User.objects.filter(email=validated_data['email']).exists():
             raise serializers.ValidationError({"email": "This email is already taken."})
 
-        # Create the user
-        user = User(
+        # Extract password and other fields
+        password = validated_data.pop('password', None)
+        
+        # Create the user with specific fields only
+        user = User.objects.create(
             username=validated_data['username'],
             email=validated_data['email'],
-            first_name=validated_data.get('full_name', ''),
-            # If you have a custom user model, you may need to handle full_name differently
-            # If using a Profile model, save to that model instead.
+            full_name=validated_data.get('full_name', ''),
+            phone_number=validated_data.get('phone_number', ''),
+            first_name=validated_data.get('first_name', ''),
+            last_name=validated_data.get('last_name', ''),
+            date_of_birth=validated_data.get('date_of_birth'),
+            gender=validated_data.get('gender', ''),
+            address=validated_data.get('address', ''),
+            sms_notifications_enabled=validated_data.get('sms_notifications_enabled', True)
         )
-        user.set_password(validated_data['password'])  # Hash the password
-        user.save()
         
-        # If using a Profile model, create or update the profile here
-        # Profile.objects.create(user=user, phone_number=validated_data['phone_number'])
+        # Set password after user creation
+        if password:
+            user.set_password(password)
+            user.save()
 
         return user
 
@@ -86,6 +98,7 @@ class ApplicationSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     document_type = DocumentTypeFlexibleField(queryset=DocumentType.objects.all())
     branch = RegistryBranchFlexibleField(queryset=RegistryBranch.objects.all())
+    attachments = AttachmentSerializer(many=True, read_only=True)
     
     # Add display fields for admin dashboard
     document_type_name = serializers.CharField(source='document_type.name', read_only=True)
@@ -114,6 +127,7 @@ class ApplicationStatusSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     branch = RegistryBranchSerializer(read_only=True)
     document_type = DocumentTypeSerializer(read_only=True)
+    attachments = AttachmentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Application
@@ -127,8 +141,16 @@ class ApplicationStatusSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
             "qr_code",
+            "attachments",
         ]
 
+
+class NotificationSerializer(serializers.ModelSerializer):
+    application_reference = serializers.CharField(source='application.reference_number', read_only=True)
+    
+    class Meta:
+        model = Notification
+        fields = ['id', 'type', 'title', 'message', 'is_read', 'created_at', 'application_reference']
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):

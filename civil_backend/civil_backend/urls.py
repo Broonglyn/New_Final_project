@@ -18,6 +18,7 @@ router.register(r'document-types', DocumentTypeViewSet)
 router.register(r'branches', RegistryBranchViewSet)
 router.register(r'applications', ApplicationViewSet)
 router.register(r'attachments', AttachmentViewSet)
+router.register(r'notifications', NotificationViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
