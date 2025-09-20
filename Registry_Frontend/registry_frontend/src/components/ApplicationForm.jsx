@@ -35,8 +35,11 @@ function ApplicationForm() {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
-        setDocTypes(docRes.data);
-        setBranches(branchRes.data);
+        // Handle paginated responses
+        const docTypesData = Array.isArray(docRes.data) ? docRes.data : docRes.data.results || [];
+        const branchesData = Array.isArray(branchRes.data) ? branchRes.data : branchRes.data.results || [];
+        setDocTypes(docTypesData);
+        setBranches(branchesData);
       } catch (err) {
         setError("Failed to load form options.");
       }
@@ -185,7 +188,7 @@ function ApplicationForm() {
                     onChange={handleDocTypeChange}
                   >
                     <option value="">-- Select --</option>
-                    {docTypes.map((type) => (
+                    {Array.isArray(docTypes) && docTypes.map((type) => (
                       <option key={type.id} value={type.id}>
                         {type.name}
                       </option>
@@ -200,7 +203,7 @@ function ApplicationForm() {
                     onChange={(e) => setBranchId(e.target.value)}
                   >
                     <option value="">-- Select --</option>
-                    {branches.map((b) => (
+                    {Array.isArray(branches) && branches.map((b) => (
                       <option key={b.id} value={b.id}>
                         {b.name}
                       </option>
