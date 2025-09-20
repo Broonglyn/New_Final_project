@@ -121,10 +121,18 @@ class NotificationViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]  # Temporarily allow access for testing
     
     def get_queryset(self):
+        # For anonymous users, return empty queryset
+        if not self.request.user.is_authenticated:
+            return Notification.objects.none()
         return Notification.objects.filter(user=self.request.user)
     
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        # Only allow creation for authenticated users
+        if self.request.user.is_authenticated:
+            serializer.save(user=self.request.user)
+        else:
+            # For anonymous users, don't save or raise an error
+            pass
 
 
 class RegisterView(generics.CreateAPIView):
