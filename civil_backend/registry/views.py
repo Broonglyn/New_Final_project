@@ -36,7 +36,7 @@ class RegistryBranchViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]  # Temporarily allow access for testing
 
 class ApplicationViewSet(viewsets.ModelViewSet):
-    queryset = Application.objects.all()
+    queryset = Application.objects.all().order_by('-created_at')
     serializer_class = ApplicationSerializer
     permission_classes = [AllowAny]  # Temporarily allow access for testing
     

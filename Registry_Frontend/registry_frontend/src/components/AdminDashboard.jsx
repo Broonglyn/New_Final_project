@@ -220,8 +220,10 @@ function AdminDashboard() {
     setTimeout(() => {
       api.get("/applications/")
         .then((res) => {
-          setApplications(res.data);
-          calculateStatistics(res.data);
+          // Handle paginated response
+          const apps = Array.isArray(res.data) ? res.data : res.data.results || [];
+          setApplications(apps);
+          calculateStatistics(apps);
           setLoading(false);
         })
         .catch((err) => {
