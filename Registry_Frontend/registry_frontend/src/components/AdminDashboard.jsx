@@ -441,7 +441,7 @@ function AdminDashboard() {
                 </Col>
                 
                 <Col md={6}>
-                  <Card className="admin-dashboard-card settings-section-card h-100" style={{ cursor: 'pointer' }} onClick={() => handleSettingsCardClick('users')}>
+                  <Card className="admin-dashboard-card settings-section-card h-100" style={{ cursor: 'pointer' }} onClick={() => handleSettingsCardClick('Manage Users')}>
                     <Card.Body>
                       <div className="d-flex align-items-center mb-3">
                         <div className="admin-icon-container me-3">
