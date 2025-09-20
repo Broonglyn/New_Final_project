@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, DocumentType, Application, Attachment, RegistryBranch, Notification, SystemConfiguration
+from .models import User, DocumentType, Application, Attachment, RegistryBranch, Notification
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class UserSerializer(serializers.ModelSerializer):
@@ -152,10 +152,6 @@ class NotificationSerializer(serializers.ModelSerializer):
         model = Notification
         fields = ['id', 'type', 'title', 'message', 'is_read', 'created_at', 'application_reference']
 
-class SystemConfigurationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SystemConfiguration
-        fields = '__all__'
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):

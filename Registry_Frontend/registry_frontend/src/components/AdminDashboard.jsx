@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./AdminDashboard.css";
-import { FaIdBadge, FaUser, FaFileAlt, FaBuilding, FaCheckCircle, FaTimesCircle, FaPaperclip, FaQrcode, FaClock, FaEye, FaCog } from "react-icons/fa";
+import { FaIdBadge, FaUser, FaFileAlt, FaBuilding, FaCheckCircle, FaTimesCircle, FaPaperclip, FaQrcode, FaClock, FaEye } from "react-icons/fa";
 import {
   Table,
   Badge,
@@ -22,7 +22,6 @@ import ManageUsers from "./ManageUsers";
 import ApplicationDetailModal from "./ApplicationDetailModal";
 import RegistryBranches from "./RegistryBranches";
 import DocumentTypes from "./DocumentTypes";
-import SystemConfiguration from "./SystemConfiguration";
 
 function StatusBadge({ status }) {
   const getStatusStyle = (status) => {
@@ -475,22 +474,6 @@ function AdminDashboard() {
                   </Card>
                 </Col>
                 
-                <Col md={6}>
-                  <Card className="admin-dashboard-card settings-section-card h-100" style={{ cursor: 'pointer' }} onClick={() => handleSettingsCardClick('system')}>
-                    <Card.Body>
-                      <div className="d-flex align-items-center mb-3">
-                        <div className="admin-icon-container me-3">
-                          <FaCog className="admin-icon" style={{ color: '#8b5cf6' }} />
-                        </div>
-                        <h5 className="admin-card-title mb-0">System Configuration</h5>
-                      </div>
-                      <p className="admin-text-muted mb-3">Configure system-wide settings and preferences.</p>
-                      <Button variant="outline-secondary" className="w-100">
-                        System Settings
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
               </Row>
               
             </Card.Body>
@@ -511,14 +494,6 @@ function AdminDashboard() {
             window.localStorage.setItem("admin_menu_selected", "Settings");
           }}>← Back to Settings</Button>
           <DocumentTypes />
-        </>
-      ) : menuSelected === "system" ? (
-        <>
-          <Button variant="outline-secondary" className="mb-3" onClick={() => {
-            setMenuSelected("Settings");
-            window.localStorage.setItem("admin_menu_selected", "Settings");
-          }}>← Back to Settings</Button>
-          <SystemConfiguration />
         </>
   ) : (
         <Card className="shadow-sm">

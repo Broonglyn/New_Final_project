@@ -10,7 +10,6 @@ from registry.views import RegisterView
 from registry.views import LoginView
 from registry.views import RegistryBranchList
 from registry.views import track_by_reference
-from registry.views import SystemConfigurationView
 
 
 router = DefaultRouter()
@@ -29,7 +28,6 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/registry-branches/', RegistryBranchList.as_view(), name='registry-branch-list'),
-    path('api/system-config/', SystemConfigurationView.as_view(), name='system-config'),
 
     path('api/track-by-reference/', track_by_reference, name='track-by-reference'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

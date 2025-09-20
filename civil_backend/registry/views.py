@@ -5,8 +5,8 @@ from .models import RegistryBranch
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import User, DocumentType, Application, Attachment, RegistryBranch, Notification, SystemConfiguration
-from .serializers import UserSerializer, DocumentTypeSerializer, ApplicationSerializer, AttachmentSerializer, RegistryBranchSerializer, NotificationSerializer, SystemConfigurationSerializer
+from .models import User, DocumentType, Application, Attachment, RegistryBranch, Notification
+from .serializers import UserSerializer, DocumentTypeSerializer, ApplicationSerializer, AttachmentSerializer, RegistryBranchSerializer, NotificationSerializer
 from .sms_service import sms_service
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
@@ -247,52 +247,3 @@ def track_by_reference(request):
     except Application.DoesNotExist:
         return Response({"detail": "Application not found."},
                         status=drf_status.HTTP_404_NOT_FOUND)
-
-class SystemConfigurationView(APIView):
-    permission_classes = [AllowAny]  # Temporarily allow access for testing
-    
-    def get(self, request):
-        # Get or create system configuration
-        config, created = SystemConfiguration.objects.get_or_create(
-            defaults={
-                'site_name': 'Civil Registry System',
-                'site_description': 'Digital Civil Registry Management System',
-                'maintenance_mode': False,
-                'allow_registration': True,
-                'email_notifications': True,
-                'sms_notifications': False,
-                'max_file_size': 10,
-                'allowed_file_types': 'pdf,jpg,jpeg,png,doc,docx',
-                'session_timeout': 30,
-                'password_min_length': 8,
-                'require_email_verification': False,
-                'auto_approve_applications': False,
-                'backup_frequency': 'daily'
-            }
-        )
-        serializer = SystemConfigurationSerializer(config)
-        return Response(serializer.data)
-    
-    def put(self, request):
-        config, created = SystemConfiguration.objects.get_or_create(
-            defaults={
-                'site_name': 'Civil Registry System',
-                'site_description': 'Digital Civil Registry Management System',
-                'maintenance_mode': False,
-                'allow_registration': True,
-                'email_notifications': True,
-                'sms_notifications': False,
-                'max_file_size': 10,
-                'allowed_file_types': 'pdf,jpg,jpeg,png,doc,docx',
-                'session_timeout': 30,
-                'password_min_length': 8,
-                'require_email_verification': False,
-                'auto_approve_applications': False,
-                'backup_frequency': 'daily'
-            }
-        )
-        serializer = SystemConfigurationSerializer(config, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
