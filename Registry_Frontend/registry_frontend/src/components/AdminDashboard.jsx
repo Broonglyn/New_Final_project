@@ -20,6 +20,9 @@ import api from "../api.jsx";
 import AdminMenu from "./AdminMenu";
 import ManageUsers from "./ManageUsers";
 import ApplicationDetailModal from "./ApplicationDetailModal";
+import RegistryBranches from "./RegistryBranches";
+import DocumentTypes from "./DocumentTypes";
+import SystemConfiguration from "./SystemConfiguration";
 
 function StatusBadge({ status }) {
   const getStatusStyle = (status) => {
@@ -275,15 +278,7 @@ function AdminDashboard() {
   };
 
   const handleSettingsCardClick = (cardType) => {
-    const messages = {
-      branches: 'Registry Branches management coming soon!',
-      users: 'User Management settings coming soon!',
-      documents: 'Document Types configuration coming soon!',
-      system: 'System Configuration panel coming soon!'
-    };
-    
-    setSettingsMessage(messages[cardType]);
-    setTimeout(() => setSettingsMessage(""), 3000);
+    setMenuSelected(cardType);
   };
 
   const handleViewDetails = (application) => {
@@ -428,13 +423,6 @@ function AdminDashboard() {
                 <h3 className="admin-card-title mb-0">System Settings</h3>
               </div>
               
-              {settingsMessage && (
-                <Alert variant="info" className="mb-4">
-                  <FaCheckCircle className="me-2" />
-                  {settingsMessage}
-                </Alert>
-              )}
-              
               <Row className="g-4">
                 <Col md={6}>
                   <Card className="admin-dashboard-card settings-section-card h-100" style={{ cursor: 'pointer' }} onClick={() => handleSettingsCardClick('branches')}>
@@ -507,6 +495,30 @@ function AdminDashboard() {
               
             </Card.Body>
           </Card>
+        </>
+      ) : menuSelected === "branches" ? (
+        <>
+          <Button variant="outline-secondary" className="mb-3" onClick={() => {
+            setMenuSelected("Settings");
+            window.localStorage.setItem("admin_menu_selected", "Settings");
+          }}>← Back to Settings</Button>
+          <RegistryBranches />
+        </>
+      ) : menuSelected === "documents" ? (
+        <>
+          <Button variant="outline-secondary" className="mb-3" onClick={() => {
+            setMenuSelected("Settings");
+            window.localStorage.setItem("admin_menu_selected", "Settings");
+          }}>← Back to Settings</Button>
+          <DocumentTypes />
+        </>
+      ) : menuSelected === "system" ? (
+        <>
+          <Button variant="outline-secondary" className="mb-3" onClick={() => {
+            setMenuSelected("Settings");
+            window.localStorage.setItem("admin_menu_selected", "Settings");
+          }}>← Back to Settings</Button>
+          <SystemConfiguration />
         </>
   ) : (
         <Card className="shadow-sm">

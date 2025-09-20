@@ -6,8 +6,12 @@ from . import utils
 class RegistryBranch(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
-    location = models.TextField()
-    contact_info = models.CharField(max_length=100)
+    address = models.TextField()
+    phone = models.CharField(max_length=20, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -36,6 +40,12 @@ class DocumentType(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
+    processing_days = models.PositiveIntegerField(default=1)
+    fee = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    requirements = models.TextField(blank=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
         return f'{self.name}'
@@ -108,3 +118,35 @@ class Notification(models.Model):
     
     def __str__(self):
         return f'{self.user.username} - {self.title}'
+
+class SystemConfiguration(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    site_name = models.CharField(max_length=200, default='Civil Registry System')
+    site_description = models.TextField(default='Digital Civil Registry Management System')
+    maintenance_mode = models.BooleanField(default=False)
+    allow_registration = models.BooleanField(default=True)
+    email_notifications = models.BooleanField(default=True)
+    sms_notifications = models.BooleanField(default=False)
+    max_file_size = models.PositiveIntegerField(default=10)  # in MB
+    allowed_file_types = models.CharField(max_length=200, default='pdf,jpg,jpeg,png,doc,docx')
+    session_timeout = models.PositiveIntegerField(default=30)  # in minutes
+    password_min_length = models.PositiveIntegerField(default=8)
+    require_email_verification = models.BooleanField(default=False)
+    auto_approve_applications = models.BooleanField(default=False)
+    notification_email = models.EmailField(blank=True, null=True)
+    sms_api_key = models.CharField(max_length=200, blank=True, null=True)
+    backup_frequency = models.CharField(max_length=20, default='daily', choices=[
+        ('hourly', 'Hourly'),
+        ('daily', 'Daily'),
+        ('weekly', 'Weekly'),
+        ('monthly', 'Monthly'),
+    ])
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    class Meta:
+        verbose_name = "System Configuration"
+        verbose_name_plural = "System Configuration"
+
+    def __str__(self):
+        return f'System Configuration - {self.site_name}'
