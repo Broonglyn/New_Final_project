@@ -20,6 +20,16 @@ class UserSerializer(serializers.ModelSerializer):
             return obj.full_name
         return f"{obj.first_name} {obj.last_name}".strip()
 
+    def validate_password(self, value):
+        """Validate password contains both letters and numbers"""
+        if value:
+            import re
+            has_letter = re.search(r'[a-zA-Z]', value)
+            has_number = re.search(r'\d', value)
+            if not has_letter or not has_number:
+                raise serializers.ValidationError("Password must contain both letters and numbers.")
+        return value
+
     def create(self, validated_data):
         # Check if the username already exists
         if User.objects.filter(username=validated_data['username']).exists():
@@ -31,14 +41,6 @@ class UserSerializer(serializers.ModelSerializer):
 
         # Extract password and other fields
         password = validated_data.pop('password', None)
-        
-        # Validate password contains both letters and numbers
-        if password:
-            import re
-            has_letter = re.search(r'[a-zA-Z]', password)
-            has_number = re.search(r'\d', password)
-            if not has_letter or not has_number:
-                raise serializers.ValidationError({"password": "Password must contain both letters and numbers."})
         
         # Create the user with specific fields only
         user = User.objects.create(
@@ -62,15 +64,9 @@ class UserSerializer(serializers.ModelSerializer):
         return user
     
     def update(self, instance, validated_data):
-        # Validate password contains both letters and numbers if provided
+        # Handle password if provided
         password = validated_data.get('password')
         if password:
-            import re
-            has_letter = re.search(r'[a-zA-Z]', password)
-            has_number = re.search(r'\d', password)
-            if not has_letter or not has_number:
-                raise serializers.ValidationError({"password": "Password must contain both letters and numbers."})
-            
             # Set password
             instance.set_password(password)
             validated_data.pop('password', None)

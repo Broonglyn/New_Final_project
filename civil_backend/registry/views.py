@@ -212,7 +212,10 @@ class RegisterView(generics.CreateAPIView):
                         "phone_number": user.phone_number
                     }
                 }, status=status.HTTP_201_CREATED)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                # Return validation errors with 400 status
+                print(f"Validation errors: {serializer.errors}")
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             print(f"Registration error: {str(e)}")
             return Response({
