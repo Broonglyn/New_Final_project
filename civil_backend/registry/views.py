@@ -41,11 +41,40 @@ class ApplicationViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]  # Temporarily allow access for testing
     
     def create(self, request, *args, **kwargs):
-        response = super().create(request, *args, **kwargs)
-        
-        # Send SMS when application is submitted
-        if response.status_code == 201:  # Created successfully
-            application = Application.objects.get(id=response.data['id'])
+        try:
+            # For now, we'll create a default user or get the first user
+            # In a real app, this should come from authentication
+            try:
+                user = User.objects.first()
+                if not user:
+                    # Create a default user if none exists
+                    user = User.objects.create(
+                        username='default_user',
+                        email='default@example.com',
+                        full_name='Default User'
+                    )
+            except Exception as e:
+                print(f"Error getting user: {str(e)}")
+                return Response(
+                    {'error': 'No user available for application creation'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            
+            # Create the application manually with the user
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            
+            # Create the application with the user
+            application = Application.objects.create(
+                user=user,
+                document_type=serializer.validated_data['document_type'],
+                branch=serializer.validated_data['branch']
+            )
+            
+            # Serialize the response
+            response_serializer = self.get_serializer(application)
+            
+            # Send SMS when application is submitted
             try:
                 sms_result = sms_service.send_application_submission_sms(
                     application.user, 
@@ -57,8 +86,16 @@ class ApplicationViewSet(viewsets.ModelViewSet):
                     print(f"Submission SMS failed: {sms_result['message']}")
             except Exception as e:
                 print(f"Error sending submission SMS: {str(e)}")
-        
-        return response
+                # Don't fail the application creation if SMS fails
+            
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+            
+        except Exception as e:
+            print(f"Error creating application: {str(e)}")
+            return Response(
+                {'error': 'Failed to create application', 'details': str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
     
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
