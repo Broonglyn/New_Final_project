@@ -65,6 +65,16 @@ function ProfileEdit({ show, onHide }) {
       setError("Passwords do not match.");
       return;
     }
+    
+    // Validate password contains both letters and numbers if provided
+    if (formData.password) {
+      const hasLetter = /[a-zA-Z]/.test(formData.password);
+      const hasNumber = /\d/.test(formData.password);
+      if (!hasLetter || !hasNumber) {
+        setError("Password must contain both letters and numbers.");
+        return;
+      }
+    }
 
     setLoading(true);
 
@@ -200,8 +210,11 @@ function ProfileEdit({ show, onHide }) {
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
-                  placeholder="Enter new password"
+                  placeholder="Must contain letters and numbers"
                 />
+                <Form.Text className="text-muted">
+                  Password must contain both letters and numbers
+                </Form.Text>
               </Form.Group>
             </Col>
             <Col md={6}>

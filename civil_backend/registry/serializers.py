@@ -32,6 +32,14 @@ class UserSerializer(serializers.ModelSerializer):
         # Extract password and other fields
         password = validated_data.pop('password', None)
         
+        # Validate password contains both letters and numbers
+        if password:
+            import re
+            has_letter = re.search(r'[a-zA-Z]', password)
+            has_number = re.search(r'\d', password)
+            if not has_letter or not has_number:
+                raise serializers.ValidationError({"password": "Password must contain both letters and numbers."})
+        
         # Create the user with specific fields only
         user = User.objects.create(
             username=validated_data['username'],
@@ -52,6 +60,27 @@ class UserSerializer(serializers.ModelSerializer):
             user.save()
 
         return user
+    
+    def update(self, instance, validated_data):
+        # Validate password contains both letters and numbers if provided
+        password = validated_data.get('password')
+        if password:
+            import re
+            has_letter = re.search(r'[a-zA-Z]', password)
+            has_number = re.search(r'\d', password)
+            if not has_letter or not has_number:
+                raise serializers.ValidationError({"password": "Password must contain both letters and numbers."})
+            
+            # Set password
+            instance.set_password(password)
+            validated_data.pop('password', None)
+        
+        # Update other fields
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        
+        instance.save()
+        return instance
 
 class DocumentTypeSerializer(serializers.ModelSerializer):
     class Meta:

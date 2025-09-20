@@ -21,6 +21,14 @@ export default function Register() {
   const handleSubmit = async e => {
     e.preventDefault();
     if (data.password !== data.password2) return toast.error('Passwords do not match');
+    
+    // Validate password contains both letters and numbers
+    const hasLetter = /[a-zA-Z]/.test(data.password);
+    const hasNumber = /\d/.test(data.password);
+    if (!hasLetter || !hasNumber) {
+      return toast.error('Password must contain both letters and numbers');
+    }
+    
     setLoading(true);
     try {
       const res = await axios.post(`${process.env.REACT_APP_API}/api/register/`, data);
@@ -60,12 +68,15 @@ export default function Register() {
 
         <Form.Group className="mb-3">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" name="password" required value={data.password} onChange={handleChange} />
+          <Form.Control type="password" name="password" required value={data.password} onChange={handleChange} placeholder="Must contain letters and numbers" />
+          <Form.Text className="text-muted">
+            Password must contain both letters and numbers
+          </Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3">
           <Form.Label>Confirm Password</Form.Label>
-          <Form.Control type="password" name="password2" required value={data.password2} onChange={handleChange} />
+          <Form.Control type="password" name="password2" required value={data.password2} onChange={handleChange} placeholder="Confirm your password" />
         </Form.Group>
 
         <Button type="submit" disabled={loading} className="w-100">
