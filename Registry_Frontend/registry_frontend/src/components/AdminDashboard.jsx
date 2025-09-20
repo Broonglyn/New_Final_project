@@ -417,7 +417,7 @@ function AdminDashboard() {
             <Card.Body>
               <div className="d-flex align-items-center mb-4">
                 <div className="admin-icon-container me-3">
-                  <FaCog className="admin-icon" />
+                  <FaBuilding className="admin-icon" />
                 </div>
                 <h3 className="admin-card-title mb-0">System Settings</h3>
               </div>
