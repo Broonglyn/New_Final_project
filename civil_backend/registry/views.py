@@ -228,6 +228,8 @@ class LoginView(APIView):
 
 
 class RegistryBranchList(APIView):
+    permission_classes = [AllowAny]  # Allow access for form options
+    
     def get(self, request):
         branches = RegistryBranch.objects.all()
         serializer = RegistryBranchSerializer(branches, many=True)
