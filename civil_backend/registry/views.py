@@ -21,17 +21,17 @@ import logging
 security_logger = logging.getLogger('django.security')
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = User.objects.all().order_by('username')
     serializer_class = UserSerializer
     permission_classes = [AllowAny]  # Temporarily allow access for testing
 
 class DocumentTypeViewSet(viewsets.ModelViewSet):
-    queryset = DocumentType.objects.all()
+    queryset = DocumentType.objects.all().order_by('name')
     serializer_class = DocumentTypeSerializer
     permission_classes = [AllowAny]  # Temporarily allow access for testing
 
 class RegistryBranchViewSet(viewsets.ModelViewSet):
-    queryset = RegistryBranch.objects.all()
+    queryset = RegistryBranch.objects.all().order_by('name')
     serializer_class = RegistryBranchSerializer
     permission_classes = [AllowAny]  # Temporarily allow access for testing
 

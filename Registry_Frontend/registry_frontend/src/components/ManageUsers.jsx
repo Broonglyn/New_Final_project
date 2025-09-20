@@ -24,7 +24,9 @@ function ManageUsers() {
   const loadUsers = () => {
     api.get("/users/")
       .then((res) => {
-        setUsers(res.data);
+        // Handle paginated response
+        const users = Array.isArray(res.data) ? res.data : res.data.results || [];
+        setUsers(users);
         setLoading(false);
       })
       .catch((err) => {
