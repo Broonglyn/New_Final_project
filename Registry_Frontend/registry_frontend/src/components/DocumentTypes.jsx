@@ -26,9 +26,12 @@ function DocumentTypes() {
     try {
       setLoading(true);
       const response = await api.get('/document-types/');
-      setDocumentTypes(response.data);
+      // Handle both array and object responses
+      const data = Array.isArray(response.data) ? response.data : response.data.results || [];
+      setDocumentTypes(data);
     } catch (err) {
       setError('Failed to load document types');
+      setDocumentTypes([]); // Set empty array on error
     } finally {
       setLoading(false);
     }

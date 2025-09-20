@@ -25,9 +25,12 @@ function RegistryBranches() {
     try {
       setLoading(true);
       const response = await api.get('/branches/');
-      setBranches(response.data);
+      // Handle both array and object responses
+      const data = Array.isArray(response.data) ? response.data : response.data.results || [];
+      setBranches(data);
     } catch (err) {
       setError('Failed to load branches');
+      setBranches([]); // Set empty array on error
     } finally {
       setLoading(false);
     }
