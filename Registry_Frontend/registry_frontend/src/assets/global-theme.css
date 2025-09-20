@@ -1,0 +1,90 @@
+:root {
+  --primary: #1976d2;
+  --accent: #f5faff;
+  --neutral: #fff;
+  --text-main: #222;
+  --text-muted: #666;
+}
+
+/* Dark mode variables - Enhanced for clarity */
+body.dark-mode {
+  --primary: #60a5fa;
+  --accent: #0f172a;
+  --neutral: #1a1a1a;
+  --text-main: #ffffff;
+  --text-muted: #cccccc;
+}
+
+body {
+  background: var(--accent);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary, .bg-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: var(--neutral) !important;
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.card {
+  background: var(--neutral);
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .card {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+.navbar {
+  background: var(--neutral) !important;
+  border-radius: 0 0 1rem 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .navbar {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+/* Comprehensive text visibility fixes for dark mode */
+body.dark-mode * {
+  color: inherit;
+}
+
+body.dark-mode .container,
+body.dark-mode .container-fluid {
+  color: #ffffff !important;
+}
+
+body.dark-mode .row,
+body.dark-mode .col,
+body.dark-mode [class*="col-"] {
+  color: #ffffff !important;
+}
+
+/* Ensure all text elements are visible */
+body.dark-mode .text-center,
+body.dark-mode .text-start,
+body.dark-mode .text-end {
+  color: #ffffff !important;
+}
+
+body.dark-mode .d-flex,
+body.dark-mode .d-inline,
+body.dark-mode .d-block {
+  color: #ffffff !important;
+}
+
+/* Fix any remaining visibility issues */
+body.dark-mode .align-items-center,
+body.dark-mode .justify-content-center,
+body.dark-mode .justify-content-between {
+  color: #ffffff !important;
+}

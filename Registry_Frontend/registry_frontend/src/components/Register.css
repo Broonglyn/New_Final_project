@@ -1,0 +1,134 @@
+.register-container {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    transition: background 0.3s ease;
+}
+
+.register-form {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    max-width: 500px;
+    width: 100%;
+}
+
+.container {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+/* Dark mode styles */
+body.dark-mode .register-container {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+body.dark-mode .register-form {
+    background: #2d2d2d !important;
+    border-color: #404040 !important;
+    color: #e0e0e0 !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .container {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Ensure all text in Register component is visible */
+body.dark-mode .register-container * {
+    color: inherit !important;
+}
+
+body.dark-mode .register-form * {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .register-form h2,
+body.dark-mode .register-form h3,
+body.dark-mode .register-form h4,
+body.dark-mode .register-form h5,
+body.dark-mode .register-form h6 {
+    color: #ffffff !important;
+}
+
+body.dark-mode .register-form p,
+body.dark-mode .register-form span,
+body.dark-mode .register-form div {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .register-form strong,
+body.dark-mode .register-form b {
+    color: #ffffff !important;
+}
+
+body.dark-mode .register-form small {
+    color: #b0b0b0 !important;
+}
+
+body.dark-mode .register-form .fw-bold,
+body.dark-mode .register-form .fw-semibold {
+    color: #ffffff !important;
+}
+
+/* Make form inputs much clearer in dark mode */
+body.dark-mode .register-form .form-control {
+    background-color: #1a1a1a !important;
+    border-color: #666666 !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .register-form .form-control::placeholder {
+    color: #cccccc !important;
+    opacity: 1 !important;
+    font-weight: 500 !important;
+}
+
+body.dark-mode .register-form .form-control:focus {
+    background-color: #1a1a1a !important;
+    border-color: #60a5fa !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 0 0.2rem rgba(96, 165, 250, 0.3) !important;
+}
+
+body.dark-mode .register-form .form-select {
+    background-color: #1a1a1a !important;
+    border-color: #666666 !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .register-form .form-select:focus {
+    background-color: #1a1a1a !important;
+    border-color: #60a5fa !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .register-form .input-group-text {
+    background-color: #333333 !important;
+    border-color: #666666 !important;
+    color: #ffffff !important;
+}
+
+/* Make the form background darker for better contrast */
+body.dark-mode .register-form {
+    background: #1a1a1a !important;
+    border-color: #404040 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6) !important;
+}

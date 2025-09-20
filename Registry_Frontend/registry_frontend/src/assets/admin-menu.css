@@ -1,0 +1,81 @@
+/* Admin Menu Styles */
+.admin-dashboard-container {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%) !important;
+}
+
+.admin-dashboard-title {
+  text-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+}
+
+.admin-welcome-text {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+}
+
+.admin-menu-card {
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.admin-menu-card-title {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+}
+
+.admin-menu-card-text {
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1) !important;
+}
+
+/* Dark Mode Styles */
+body.dark-mode .admin-dashboard-container {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+body.dark-mode .admin-dashboard-title {
+  background: linear-gradient(45deg, #60a5fa, #93c5fd) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #f1f5f9 !important;
+}
+
+body.dark-mode .admin-welcome-text {
+  background: linear-gradient(45deg, #34d399, #6ee7b7) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #f1f5f9 !important;
+}
+
+body.dark-mode .admin-menu-card {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border: 1px solid rgba(51, 65, 85, 0.3) !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .admin-menu-card:hover {
+  background: rgba(51, 65, 85, 0.8) !important;
+  border-color: rgba(71, 85, 105, 0.5) !important;
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.1) !important;
+}
+
+body.dark-mode .admin-menu-card-title {
+  background: linear-gradient(45deg, #60a5fa, #93c5fd) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #f1f5f9 !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+}
+
+body.dark-mode .admin-menu-card-text {
+  color: #cbd5e1 !important;
+  font-weight: 500 !important;
+}
+
+body.dark-mode .admin-menu-button {
+  background: linear-gradient(135deg, #1e40af, #3b82f6) !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: 0 10px 30px rgba(30, 64, 175, 0.3) !important;
+}
+
+body.dark-mode .admin-menu-button:hover {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb) !important;
+  box-shadow: 0 16px 40px rgba(30, 64, 175, 0.4) !important;
+}

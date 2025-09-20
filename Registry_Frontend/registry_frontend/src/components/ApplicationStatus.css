@@ -1,0 +1,146 @@
+/* Gradient title effect */
+.text-gradient {
+  background: linear-gradient(to right, #0d6efd, #6610f2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+/* Card styling */
+.card {
+  border-radius: 1rem;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Section headers */
+.card-body h6 {
+  font-size: 1rem;
+  color: #343a40;
+  margin-bottom: 0.75rem;
+}
+
+/* Left border accent */
+.border-start {
+  border-left: 3px solid #dee2e6;
+}
+
+/* QR code preview */
+.qr-preview {
+  max-width: 200px;
+  margin-top: 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+}
+
+/* Status badge */
+.badge {
+  font-size: 0.9rem;
+  padding: 0.4em 0.6em;
+  border-radius: 0.4rem;
+  text-transform: uppercase;
+}
+
+/* Alerts */
+.alert {
+  margin-top: 1rem;
+}
+
+/* Input group spacing */
+.input-group {
+  margin-bottom: 1rem;
+}
+
+/* Spinner alignment */
+.spinner-border {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .text-gradient {
+    font-size: 1.5rem;
+  }
+
+  .input-group {
+    width: 100% !important;
+  }
+}
+
+/* Dark mode styles */
+body.dark-mode .text-gradient {
+  background: linear-gradient(to right, #60a5fa, #a78bfa) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .card-body h6 {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .border-start {
+  border-left-color: #555555 !important;
+}
+
+body.dark-mode .qr-preview {
+  border-color: #555555 !important;
+}
+
+/* Ensure all text in ApplicationStatus is visible */
+body.dark-mode .card-body p {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .card-body strong {
+  color: #ffffff !important;
+}
+
+body.dark-mode .card-body small {
+  color: #b0b0b0 !important;
+}
+
+body.dark-mode .card-body span {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .card-body .fw-bold {
+  color: #ffffff !important;
+}
+
+body.dark-mode .card-body .fw-semibold {
+  color: #ffffff !important;
+}
+
+/* Print layout */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .card, .card * {
+    visibility: visible;
+  }
+
+  .card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+  }
+
+  .btn, .input-group, .alert {
+    display: none !important;
+  }
+}

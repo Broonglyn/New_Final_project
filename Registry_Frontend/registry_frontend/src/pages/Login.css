@@ -1,0 +1,13 @@
+/* Login page custom styles */
+
+.login-container {
+  max-width: 480px;
+  margin-top: 3rem;
+}
+
+/* Dark mode styles */
+body.dark-mode .login-container {
+  color: #e0e0e0 !important;
+}
+
+/* Add more custom styles as needed */

@@ -1,0 +1,255 @@
+/* Admin Dashboard Cards */
+.admin-dashboard-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+  animation: slideInUp 0.5s ease both;
+}
+
+.admin-dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.admin-card-title {
+  font-size: 1.1rem;
+  color: #1e293b;
+}
+
+.admin-card-subtitle {
+  font-size: 0.95rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.admin-icon-container {
+  width: 32px;
+  height: 32px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.admin-icon {
+  color: #64748b;
+}
+
+.admin-badge {
+  background: #f1f5f9;
+  color: #475569;
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+}
+
+.admin-status-icon-success {
+  width: 24px;
+  height: 24px;
+  background: #dcfce7;
+  border-radius: 6px;
+  border: 1px solid #bbf7d0;
+}
+
+.admin-status-icon-success .fa-check-circle {
+  color: #16a34a;
+}
+
+.admin-status-icon-danger {
+  width: 24px;
+  height: 24px;
+  background: #fef2f2;
+  border-radius: 6px;
+  border: 1px solid #fecaca;
+}
+
+.admin-status-icon-danger .fa-times-circle {
+  color: #dc2626;
+}
+
+.admin-form-select {
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #374151;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.admin-form-select:focus {
+  background: #ffffff;
+  color: #374151;
+  border-color: #9ca3af;
+  box-shadow: 0 0 0 0.2rem rgba(156, 163, 175, 0.25);
+}
+
+.admin-button {
+  background: #f8fafc;
+  color: #475569;
+  border-radius: 8px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.admin-button:hover {
+  background: #f1f5f9;
+  border-color: #d1d5db;
+}
+
+.admin-qr-code {
+  border: 1px solid #e2e8f0;
+}
+
+.admin-text-muted {
+  color: #64748b;
+}
+
+/* Status Badge Styles */
+.admin-status-badge-submitted,
+.admin-status-badge-review {
+  background: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+.admin-status-badge-approved,
+.admin-status-badge-ready,
+.admin-status-badge-collected {
+  background: #dcfce7;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+.admin-status-badge-printed,
+.admin-status-badge-rejected {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.admin-status-badge-default {
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+}
+
+/* Dark Mode Styles */
+body.dark-mode .admin-dashboard-card {
+  background: #1e293b !important;
+  border: 1px solid #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .admin-dashboard-card:hover {
+  background: #334155 !important;
+  border-color: #475569 !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .admin-card-title {
+  color: #f1f5f9 !important;
+}
+
+body.dark-mode .admin-card-subtitle {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .admin-icon-container {
+  background: #334155 !important;
+  border: 1px solid #475569 !important;
+}
+
+body.dark-mode .admin-icon {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .admin-badge {
+  background: #334155 !important;
+  color: #cbd5e1 !important;
+  border: 1px solid #475569 !important;
+}
+
+body.dark-mode .admin-status-icon-success {
+  background: #064e3b !important;
+  border: 1px solid #065f46 !important;
+}
+
+body.dark-mode .admin-status-icon-success .fa-check-circle {
+  color: #10b981 !important;
+}
+
+body.dark-mode .admin-status-icon-danger {
+  background: #7f1d1d !important;
+  border: 1px solid #991b1b !important;
+}
+
+body.dark-mode .admin-status-icon-danger .fa-times-circle {
+  color: #ef4444 !important;
+}
+
+body.dark-mode .admin-form-select {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #475569 !important;
+}
+
+body.dark-mode .admin-form-select:focus {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-color: #64748b !important;
+  box-shadow: 0 0 0 0.2rem rgba(100, 116, 139, 0.25) !important;
+}
+
+body.dark-mode .admin-button {
+  background: #334155 !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #475569 !important;
+}
+
+body.dark-mode .admin-button:hover {
+  background: #475569 !important;
+  border-color: #64748b !important;
+}
+
+body.dark-mode .admin-qr-code {
+  border: 1px solid #475569 !important;
+}
+
+body.dark-mode .admin-text-muted {
+  color: #94a3b8 !important;
+}
+
+/* Status Badge Dark Mode */
+body.dark-mode .admin-status-badge-submitted,
+body.dark-mode .admin-status-badge-review {
+  background: #1e3a8a !important;
+  color: #dbeafe !important;
+  border: 1px solid #3b82f6 !important;
+}
+
+body.dark-mode .admin-status-badge-approved,
+body.dark-mode .admin-status-badge-ready,
+body.dark-mode .admin-status-badge-collected {
+  background: #064e3b !important;
+  color: #dcfce7 !important;
+  border: 1px solid #10b981 !important;
+}
+
+body.dark-mode .admin-status-badge-printed,
+body.dark-mode .admin-status-badge-rejected {
+  background: #7f1d1d !important;
+  color: #fef2f2 !important;
+  border: 1px solid #ef4444 !important;
+}
+
+body.dark-mode .admin-status-badge-default {
+  background: #334155 !important;
+  color: #94a3b8 !important;
+  border: 1px solid #475569 !important;
+}

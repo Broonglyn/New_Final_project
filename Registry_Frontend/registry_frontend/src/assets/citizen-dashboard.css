@@ -1,0 +1,354 @@
+/* Citizen Dashboard Styles */
+.citizen-dashboard-container {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%) !important;
+}
+
+.citizen-dashboard-title {
+  text-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+}
+
+.citizen-welcome-text {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+}
+
+.citizen-edit-button {
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  animation: slideInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both;
+}
+
+.citizen-loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+.citizen-loading-text {
+  font-size: 1.1rem;
+  color: #64748b;
+  font-weight: 500;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.citizen-error-alert {
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.15);
+  animation: slideInUp 0.6s ease both;
+}
+
+.citizen-stats-card,
+.citizen-applications-card,
+.citizen-no-apps-card,
+.citizen-action-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255,255,255,0.8);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.citizen-stats-card {
+  animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+}
+
+.citizen-applications-card {
+  animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+}
+
+.citizen-no-apps-card {
+  animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+}
+
+.citizen-action-card {
+  transition: all 0.3s ease;
+}
+
+.citizen-action-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 35px 70px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.citizen-stats-icon,
+.citizen-applications-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.citizen-stats-title,
+.citizen-applications-title {
+  font-size: 1.4rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.citizen-stat-item {
+  animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.citizen-stat-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 20px 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.citizen-stat-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.citizen-stat-value {
+  font-size: 2.8rem;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 8px;
+  animation: pulse 2s ease-in-out infinite;
+  letter-spacing: -0.02em;
+}
+
+.citizen-stat-label {
+  color: #374151;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.025em;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.citizen-application-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  transition: all 0.3s ease;
+}
+
+.citizen-application-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.citizen-app-ref {
+  font-size: 1.1rem;
+}
+
+.citizen-app-details p {
+  font-weight: 500;
+}
+
+.citizen-view-all-button {
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.8s both;
+}
+
+.citizen-action-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.citizen-action-title {
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+}
+
+.citizen-action-text {
+  color: #64748b;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.citizen-action-button {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.citizen-no-apps-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.citizen-no-apps-title {
+  font-size: 1.5rem;
+  color: #64748b;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.citizen-no-apps-text {
+  color: #9ca3af;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Dark Mode Styles */
+body.dark-mode .citizen-dashboard-container {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+body.dark-mode .citizen-dashboard-title {
+  background: linear-gradient(45deg, #34d399, #10b981) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #f1f5f9 !important;
+}
+
+body.dark-mode .citizen-welcome-text {
+  background: linear-gradient(45deg, #60a5fa, #3b82f6) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #f1f5f9 !important;
+}
+
+body.dark-mode .citizen-edit-button {
+  background: rgba(59, 130, 246, 0.1) !important;
+  color: #60a5fa !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+}
+
+body.dark-mode .citizen-edit-button:hover {
+  background: rgba(59, 130, 246, 0.2) !important;
+  color: #93c5fd !important;
+  border-color: rgba(59, 130, 246, 0.5) !important;
+}
+
+body.dark-mode .citizen-stats-card,
+body.dark-mode .citizen-applications-card,
+body.dark-mode .citizen-no-apps-card,
+body.dark-mode .citizen-action-card {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border: 1px solid rgba(51, 65, 85, 0.3) !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .citizen-stats-card:hover,
+body.dark-mode .citizen-applications-card:hover,
+body.dark-mode .citizen-action-card:hover {
+  background: rgba(51, 65, 85, 0.8) !important;
+  border-color: rgba(71, 85, 105, 0.5) !important;
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.1) !important;
+}
+
+body.dark-mode .citizen-stats-title,
+body.dark-mode .citizen-applications-title {
+  background: linear-gradient(45deg, #60a5fa, #93c5fd) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #f1f5f9 !important;
+}
+
+body.dark-mode .citizen-stat-value {
+  color: #f1f5f9 !important;
+}
+
+body.dark-mode .citizen-stat-label {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .citizen-application-card {
+  background: rgba(51, 65, 85, 0.6) !important;
+  border: 1px solid rgba(71, 85, 105, 0.4) !important;
+}
+
+body.dark-mode .citizen-application-card:hover {
+  background: rgba(71, 85, 105, 0.8) !important;
+  border-color: rgba(100, 116, 139, 0.6) !important;
+}
+
+body.dark-mode .citizen-app-ref {
+  background: linear-gradient(45deg, #60a5fa, #93c5fd) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #f1f5f9 !important;
+}
+
+body.dark-mode .citizen-app-details p {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .citizen-action-title {
+  background: linear-gradient(45deg, #34d399, #10b981) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #f1f5f9 !important;
+}
+
+body.dark-mode .citizen-action-text {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .citizen-action-button {
+  background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3) !important;
+}
+
+body.dark-mode .citizen-action-button:hover {
+  background: linear-gradient(135deg, #16a34a, #15803d) !important;
+  box-shadow: 0 12px 25px rgba(34, 197, 94, 0.4) !important;
+}
+
+body.dark-mode .citizen-no-apps-title {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .citizen-no-apps-text {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .citizen-loading-text {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .citizen-error-alert {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #fca5a5 !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+body.dark-mode .citizen-stat-card {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border: 1px solid rgba(51, 65, 85, 0.3) !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .citizen-stat-card:hover {
+  background: rgba(51, 65, 85, 0.9) !important;
+  border-color: rgba(71, 85, 105, 0.5) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
+}

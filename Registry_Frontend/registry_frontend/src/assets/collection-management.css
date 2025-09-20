@@ -1,0 +1,367 @@
+/* Collection Management Styles */
+.collection-search-panel {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.collection-ready-panel {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+}
+
+.collection-card {
+  background: rgba(255,255,255,0.9) !important;
+  color: #333 !important;
+}
+
+.collection-card .text-dark {
+  color: #333 !important;
+}
+
+.collection-card .text-muted {
+  color: #666 !important;
+}
+
+.collection-card .btn-success {
+  background: linear-gradient(45deg, #51cf66, #40c057) !important;
+  color: white !important;
+}
+
+/* Ensure white text on gradient backgrounds */
+.gradient-text-white {
+  color: white !important;
+}
+
+.gradient-text-white-50 {
+  color: rgba(255,255,255,0.7) !important;
+}
+
+/* Dark mode styles for Collection Management */
+body.dark-mode .collection-card {
+  background: rgba(45, 45, 45, 0.95) !important;
+  color: #ffffff !important;
+  border: 1px solid #555555 !important;
+}
+
+body.dark-mode .collection-card .text-dark {
+  color: #ffffff !important;
+}
+
+body.dark-mode .collection-card .text-muted {
+  color: #cccccc !important;
+}
+
+body.dark-mode .collection-card h1,
+body.dark-mode .collection-card h2,
+body.dark-mode .collection-card h3,
+body.dark-mode .collection-card h4,
+body.dark-mode .collection-card h5,
+body.dark-mode .collection-card h6 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .collection-card p,
+body.dark-mode .collection-card span,
+body.dark-mode .collection-card div {
+  color: #ffffff !important;
+}
+
+body.dark-mode .collection-card .fw-bold,
+body.dark-mode .collection-card .fw-semibold {
+  color: #ffffff !important;
+}
+
+/* Fix form controls in dark mode for Collection Management */
+body.dark-mode .collection-card .form-control {
+  background-color: #2d2d2d !important;
+  color: #ffffff !important;
+  border: 1px solid #666666 !important;
+}
+
+body.dark-mode .collection-card .form-control::placeholder {
+  color: #cccccc !important;
+  opacity: 1 !important;
+}
+
+body.dark-mode .collection-card .form-control:focus {
+  background-color: #2d2d2d !important;
+  color: #ffffff !important;
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 0 0.2rem rgba(96, 165, 250, 0.25) !important;
+}
+
+/* Fix ALL form controls in Collection Management (not just within cards) */
+body.dark-mode .form-control {
+  background-color: #2d2d2d !important;
+  color: #ffffff !important;
+  border: 1px solid #666666 !important;
+}
+
+body.dark-mode .form-control::placeholder {
+  color: #cccccc !important;
+  opacity: 1 !important;
+}
+
+body.dark-mode .form-control:focus {
+  background-color: #2d2d2d !important;
+  color: #ffffff !important;
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 0 0.2rem rgba(96, 165, 250, 0.25) !important;
+}
+
+body.dark-mode .collection-card .form-label {
+  color: #ffffff !important;
+}
+
+/* Fix button text in dark mode for Collection Management */
+body.dark-mode .collection-card .btn-light {
+  background-color: #404040 !important;
+  color: #ffffff !important;
+  border-color: #666666 !important;
+}
+
+body.dark-mode .collection-card .btn-light:hover {
+  background-color: #555555 !important;
+  color: #ffffff !important;
+  border-color: #777777 !important;
+}
+
+/* Fix ALL buttons in Collection Management (not just within cards) */
+body.dark-mode .btn-light {
+  background-color: #404040 !important;
+  color: #ffffff !important;
+  border-color: #666666 !important;
+}
+
+body.dark-mode .btn-light:hover {
+  background-color: #555555 !important;
+  color: #ffffff !important;
+  border-color: #777777 !important;
+}
+
+/* Fix specific button classes that might have white backgrounds */
+body.dark-mode .btn {
+  background-color: #404040 !important;
+  color: #ffffff !important;
+  border-color: #666666 !important;
+}
+
+body.dark-mode .btn:hover {
+  background-color: #555555 !important;
+  color: #ffffff !important;
+  border-color: #777777 !important;
+}
+
+/* Ensure all text in Collection Management is visible */
+body.dark-mode .collection-card * {
+  color: inherit !important;
+}
+
+body.dark-mode .collection-card .card-title,
+body.dark-mode .collection-card .card-text {
+  color: #ffffff !important;
+}
+
+body.dark-mode .collection-card .badge {
+  color: #ffffff !important;
+}
+
+/* Additional fixes for Collection Management dark mode */
+body.dark-mode .collection-card .btn {
+  color: #ffffff !important;
+}
+
+body.dark-mode .collection-card .btn-outline-primary {
+  color: #60a5fa !important;
+  border-color: #60a5fa !important;
+}
+
+body.dark-mode .collection-card .btn-outline-primary:hover {
+  background-color: #60a5fa !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .collection-card .btn-outline-secondary {
+  color: #cccccc !important;
+  border-color: #666666 !important;
+}
+
+body.dark-mode .collection-card .btn-outline-secondary:hover {
+  background-color: #666666 !important;
+  color: #ffffff !important;
+}
+
+/* Fix table text in dark mode */
+body.dark-mode .collection-card .table {
+  color: #ffffff !important;
+}
+
+body.dark-mode .collection-card .table td,
+body.dark-mode .collection-card .table th {
+  color: #ffffff !important;
+  border-color: #555555 !important;
+}
+
+/* Fix alert text in dark mode */
+body.dark-mode .collection-card .alert {
+  color: #ffffff !important;
+}
+
+body.dark-mode .collection-card .alert-danger {
+  background-color: rgba(220, 53, 69, 0.2) !important;
+  border-color: #dc3545 !important;
+  color: #f5a6a6 !important;
+}
+
+body.dark-mode .collection-card .alert-success {
+  background-color: rgba(40, 167, 69, 0.2) !important;
+  border-color: #28a745 !important;
+  color: #7dd87f !important;
+}
+
+/* Fix application cards in Ready for Collection section */
+body.dark-mode .card {
+  background-color: #2d2d2d !important;
+  color: #ffffff !important;
+  border-color: #555555 !important;
+}
+
+body.dark-mode .card-body {
+  background-color: #2d2d2d !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .card-body h5,
+body.dark-mode .card-body h6 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .card-body p,
+body.dark-mode .card-body small {
+  color: #ffffff !important;
+}
+
+body.dark-mode .card-body .text-muted {
+  color: #cccccc !important;
+}
+
+/* Fix any remaining white backgrounds in Collection Management */
+body.dark-mode .bg-white {
+  background-color: #2d2d2d !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .bg-light {
+  background-color: #404040 !important;
+  color: #ffffff !important;
+}
+
+/* Fix specific Collection Management components */
+body.dark-mode .collection-management-container .card {
+  background-color: #2d2d2d !important;
+  color: #ffffff !important;
+  border-color: #555555 !important;
+}
+
+body.dark-mode .collection-management-container .btn {
+  background-color: #404040 !important;
+  color: #ffffff !important;
+  border-color: #666666 !important;
+}
+
+body.dark-mode .collection-management-container .form-control {
+  background-color: #2d2d2d !important;
+  color: #ffffff !important;
+  border-color: #666666 !important;
+}
+
+/* Collection Management specific component styles */
+.collection-search-input {
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85)) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.6) !important;
+  border: 2px solid rgba(255,255,255,0.4) !important;
+}
+
+.collection-search-button {
+  background: linear-gradient(135deg, #fff, #f8fafc, #e2e8f0) !important;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.8) !important;
+  border: 2px solid rgba(255,255,255,0.5) !important;
+}
+
+.collection-refresh-button {
+  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)) !important;
+  border: 2px solid rgba(255,255,255,0.4) !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1) !important;
+}
+
+.collection-applications-container {
+  background: rgba(255,255,255,0.95) !important;
+  border: 1px solid rgba(255,255,255,0.3) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+}
+
+.collection-application-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85)) !important;
+  border: 2px solid rgba(255,255,255,0.3) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.6) !important;
+}
+
+/* Dark mode overrides for Collection Management components */
+body.dark-mode .collection-search-input {
+  background: linear-gradient(135deg, #2d2d2d, #404040) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1) !important;
+  border: 2px solid #666666 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .collection-search-input::placeholder {
+  color: #cccccc !important;
+  opacity: 1 !important;
+}
+
+body.dark-mode .collection-search-input:focus {
+  background: linear-gradient(135deg, #2d2d2d, #404040) !important;
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 0 0.2rem rgba(96, 165, 250, 0.25) !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .collection-search-button {
+  background: linear-gradient(135deg, #404040, #555555) !important;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1) !important;
+  border: 2px solid #666666 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .collection-search-button:hover {
+  background: linear-gradient(135deg, #555555, #666666) !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .collection-refresh-button {
+  background: linear-gradient(135deg, #404040, #555555) !important;
+  border: 2px solid #666666 !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3) !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .collection-refresh-button:hover {
+  background: linear-gradient(135deg, #555555, #666666) !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .collection-applications-container {
+  background: #2d2d2d !important;
+  border: 1px solid #555555 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+}
+
+body.dark-mode .collection-application-card {
+  background: linear-gradient(135deg, #2d2d2d, #404040) !important;
+  border: 2px solid #555555 !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1) !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .collection-application-card:hover {
+  background: linear-gradient(135deg, #404040, #555555) !important;
+  color: #ffffff !important;
+}
