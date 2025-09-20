@@ -152,6 +152,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
 class AttachmentViewSet(viewsets.ModelViewSet):
     queryset = Attachment.objects.all()
     serializer_class = AttachmentSerializer
+    permission_classes = [AllowAny]  # Allow access for file uploads
 
 class NotificationViewSet(viewsets.ModelViewSet):
     queryset = Notification.objects.all()
