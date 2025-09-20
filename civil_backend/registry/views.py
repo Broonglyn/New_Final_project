@@ -196,13 +196,20 @@ class RegisterView(generics.CreateAPIView):
                     print(f"Error sending welcome SMS: {str(e)}")
                     # Don't fail registration if SMS fails
                 
+                # Generate JWT token
+                refresh = RefreshToken.for_user(user)
+                access_token = refresh.access_token
+                
                 return Response({
                     "message": "User registered successfully",
+                    "token": str(access_token),
+                    "refresh": str(refresh),
                     "user": {
                         "id": str(user.id),
                         "username": user.username,
                         "email": user.email,
-                        "full_name": user.full_name
+                        "full_name": user.full_name,
+                        "phone_number": user.phone_number
                     }
                 }, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

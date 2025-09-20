@@ -8,7 +8,8 @@ import { useNavigate } from 'react-router-dom';
 export default function Register() {
   const nav = useNavigate();
   const [data, setData] = useState({
-    phone: '',
+    username: '',
+    phone_number: '',
     email: '',
     password: '',
     password2: '',
@@ -23,9 +24,13 @@ export default function Register() {
     setLoading(true);
     try {
       const res = await axios.post(`${process.env.REACT_APP_API}/api/register/`, data);
-      localStorage.setItem('token', res.data.token);
+      // Store tokens in the format expected by the app
+      localStorage.setItem('access', res.data.token);
+      localStorage.setItem('refresh', res.data.refresh);
+      // Store user data
+      localStorage.setItem('user', JSON.stringify(res.data.user));
       toast.success('Account created!');
-      nav('/dashboard');
+      nav('/citizen/dashboard');
     } catch (err) {
       toast.error(err.response?.data?.detail || 'Error');
     } finally {
@@ -39,13 +44,18 @@ export default function Register() {
       <h3 className="mb-3">Create Account</h3>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label>Phone Number</Form.Label>
-          <Form.Control type="tel" name="phone" required value={data.phone} onChange={handleChange} placeholder="+263..." />
+          <Form.Label>Username</Form.Label>
+          <Form.Control type="text" name="username" required value={data.username} onChange={handleChange} placeholder="Enter username" />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Email (optional)</Form.Label>
-          <Form.Control type="email" name="email" value={data.email} onChange={handleChange} />
+          <Form.Label>Phone Number</Form.Label>
+          <Form.Control type="tel" name="phone_number" required value={data.phone_number} onChange={handleChange} placeholder="+263..." />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="email" name="email" required value={data.email} onChange={handleChange} placeholder="Enter email" />
         </Form.Group>
 
         <Form.Group className="mb-3">

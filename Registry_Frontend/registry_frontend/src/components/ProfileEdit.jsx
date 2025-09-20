@@ -23,8 +23,10 @@ function ProfileEdit({ show, onHide }) {
       // Get current user data from API
       api.get("/users/")
         .then((res) => {
+          // Handle paginated response
+          const users = Array.isArray(res.data) ? res.data : res.data.results || [];
           // Find the current user by email
-          const userData = res.data.find(u => u.email === user.email);
+          const userData = users.find(u => u.email === user.email);
           if (userData) {
             setCurrentUser(userData);
             setFormData({
