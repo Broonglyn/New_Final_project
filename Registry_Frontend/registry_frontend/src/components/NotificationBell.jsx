@@ -97,14 +97,14 @@ function NotificationBell() {
                         <Spinner animation="border" size="sm" />
                         <div className="mt-2">Loading notifications...</div>
                     </div>
-                ) : notifications.length === 0 ? (
+                ) : !Array.isArray(notifications) || notifications.length === 0 ? (
                     <div className="text-center p-4 text-muted">
                         <FaBell className="mb-2" style={{ fontSize: '2rem', opacity: 0.3 }} />
                         <div>No notifications yet</div>
                     </div>
                 ) : (
                     <ListGroup variant="flush">
-                        {notifications.slice(0, 10).map((notification) => (
+                        {(Array.isArray(notifications) ? notifications : []).slice(0, 10).map((notification) => (
                             <ListGroup.Item
                                 key={notification.id}
                                 className={`border-0 px-3 py-2 cursor-pointer ${
@@ -154,7 +154,7 @@ function NotificationBell() {
                     </ListGroup>
                 )}
 
-                {notifications.length > 10 && (
+                {Array.isArray(notifications) && notifications.length > 10 && (
                     <div className="text-center p-2 border-top">
                         <small className="text-muted">
                             Showing latest 10 notifications

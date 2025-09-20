@@ -21,10 +21,15 @@ export const NotificationProvider = ({ children }) => {
         try {
             setLoading(true);
             const response = await api.get('/notifications/');
-            setNotifications(response.data);
-            setUnreadCount(response.data.filter(n => !n.is_read).length);
+            // Handle both array and object responses
+            const data = Array.isArray(response.data) ? response.data : response.data.results || [];
+            setNotifications(data);
+            setUnreadCount(data.filter(n => !n.is_read).length);
         } catch (error) {
             console.error('Failed to load notifications:', error);
+            // Set empty array on error to prevent crashes
+            setNotifications([]);
+            setUnreadCount(0);
             // Don't show error if it's just authentication issue
             if (error.response?.status !== 401) {
                 console.error('Notification error:', error);
