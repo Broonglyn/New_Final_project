@@ -28,13 +28,17 @@ function CitizenDashboard() {
       
       // Get current user data
       const usersRes = await api.get("/users/");
-      const userData = usersRes.data.find(u => u.email === user.email);
+      // Handle paginated response
+      const users = Array.isArray(usersRes.data) ? usersRes.data : usersRes.data.results || [];
+      const userData = users.find(u => u.email === user.email);
       if (userData) {
         setCurrentUser(userData);
         
         // Get user's applications
         const appsRes = await api.get("/applications/");
-        const userApplications = appsRes.data.filter(app => app.user.id === userData.id);
+        // Handle paginated response
+        const apps = Array.isArray(appsRes.data) ? appsRes.data : appsRes.data.results || [];
+        const userApplications = apps.filter(app => app.user.id === userData.id);
         setApplications(userApplications);
       }
     } catch (err) {
