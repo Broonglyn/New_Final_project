@@ -29,6 +29,24 @@ class User(AbstractUser):
     sms_notifications_enabled = models.BooleanField(default=True)
 
     email = models.EmailField(unique=True)
+    
+    # Override groups and user_permissions to add related_name
+    groups = models.ManyToManyField(
+        'auth.Group',
+        verbose_name='groups',
+        blank=True,
+        help_text='The groups this user belongs to.',
+        related_name='registry_users',
+        related_query_name='registry_user',
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        verbose_name='user permissions',
+        blank=True,
+        help_text='Specific permissions for this user.',
+        related_name='registry_users',
+        related_query_name='registry_user',
+    )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
